@@ -7,7 +7,7 @@ This project follows HNGi13 Stage 0 Task requirements — including semantic str
 
 ## 🚀 Live Demo
 
-👉 [Live Site on Netlify](https://your-netlify-url.netlify.app)
+👉 [Live Site on Netlify](https://profile-card-task0-hngi13.netlify.app/)
 
 ---
 
