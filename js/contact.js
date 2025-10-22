@@ -62,7 +62,7 @@ const fields = {
     }
 };
 
-// Character counter for message
+// char counter for message
 messageTextarea.addEventListener('input', function() {
     const length = this.value.length;
     messageCounter.textContent = `${length} characters ${length < 10 ? '(minimum 10 required)' : ''}`;
@@ -76,7 +76,7 @@ messageTextarea.addEventListener('input', function() {
     }
 });
 
-// Real-time validation
+// real-time validation
 Object.keys(fields).forEach(fieldName => {
     const field = fields[fieldName];
     
@@ -88,7 +88,7 @@ Object.keys(fields).forEach(fieldName => {
     });
 });
 
-// Validate individual field
+// validate individual field
 function validateField(fieldName) {
     const field = fields[fieldName];
     const value = field.element.value;
@@ -103,7 +103,7 @@ function validateField(fieldName) {
     }
 }
 
-// Show field error
+// show field error
 function showFieldError(field, message) {
     field.element.classList.add('error');
     field.element.classList.remove('success');
@@ -111,7 +111,7 @@ function showFieldError(field, message) {
     field.error.classList.add('show');
 }
 
-// Clear field error
+// clear field error
 function clearFieldError(field) {
     field.element.classList.remove('error');
     field.element.classList.add('success');
@@ -119,7 +119,7 @@ function clearFieldError(field) {
     field.error.classList.remove('show');
 }
 
-// Validate entire form
+// validate entire form
 function validateForm() {
     let isValid = true;
     
@@ -132,20 +132,20 @@ function validateForm() {
     return isValid;
 }
 
-// Handle form submission
+// handle form submission
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Hide success message if visible
+    // hide success message if visible
     successMessage.classList.remove('show');
     
-    // Validate form
+    // halidate form
     if (!validateForm()) {
-        // Shake the form to indicate error
+        // Shake the form to indicate err
         form.classList.add('shake');
         setTimeout(() => form.classList.remove('shake'), 500);
         
-        // Focus first error field
+        // focus first err field
         const firstErrorField = Object.values(fields).find(field => 
             field.element.classList.contains('error')
         );
@@ -155,46 +155,46 @@ form.addEventListener('submit', function(e) {
         return;
     }
 
-    // Show loading state
+    // show loading state
     submitButton.classList.add('loading');
     submitButton.disabled = true;
 
-    // Simulate form submission (replace with actual submission logic)
+    // simulate form submission 
     setTimeout(() => {
         // Hide loading state
         submitButton.classList.remove('loading');
         submitButton.disabled = false;
 
-        // Show success message
+        // show success message
         successMessage.classList.add('show');
         
-        // Reset form
+        // reset form
         form.reset();
         messageCounter.textContent = '0 characters (minimum 10 required)';
         messageCounter.className = 'char-counter error';
         
-        // Clear all field states
+        // clear all field states
         Object.values(fields).forEach(field => {
             field.element.classList.remove('error', 'success');
             field.error.classList.remove('show');
         });
 
-        // Scroll to success message
+        // scroll to success message
         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // Focus success message for screen readers
+        // focus success message for screen readers
         successMessage.setAttribute('tabindex', '-1');
         successMessage.focus();
         
-    }, 2000); // 2 second delay to simulate network request
+    }, 2000); 
 });
 
-// Keyboard navigation enhancements
+// keyboard navigation enhancements
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && successMessage.classList.contains('show')) {
         successMessage.classList.remove('show');
     }
 });
 
-// Initialize character counter
+// initialize character counter
 messageTextarea.dispatchEvent(new Event('input'));
